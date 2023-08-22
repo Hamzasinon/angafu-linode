@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+  {% for destination in lis_destination %}
+  <div class="col-md-6 col-lg-4 col-xlg-3">
+      <a href="{% url 'destination' destination_id=destination.id %}?societe_id={{ societe_id }}">
+      <div class="card card-hover">
+        <div class="box bg-danger text-center">
+          <h6 class="text-white">{{destination.nom}}</h6>
+          </div>
+      </div>
+      </a>
+  </div>
+  {% endfor %}
+  {% else %}
+  <h1>Désolé! Vous devez vous connecter pour voir cette page
+  <a href="{% url 'connecte' %}" class="sidebar-link"
+                    
+                    ><span class="hide-menu">Se Connecte </span></a
+                  ></h1>
+{% endif %}
+{% endblock  %}

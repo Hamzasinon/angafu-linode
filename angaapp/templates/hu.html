@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title mb-0">Liste des Reservations Confirmées</h5>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">NOM</th>
+            <th scope="col">PRENOM</th>
+            <th scope="col">DATE DEPART</th>
+            <th scope="col">HEURE</th>
+            <th scope="col">DESTINATION</th>
+            <th scope="col">NUMERO TELEPHONE</th>
+            <th scope="col">NUMERO TRANSFER</th>
+            <!-- Autres en-têtes de colonnes -->
+          </tr>
+        </thead>
+        <tbody>
+            {% for reservation in reservations_confirmees_non_valides %}
+          <tr>
+            <th scope="row">{{ reservation.code_reservation }}</th>
+            <td>{{ reservation.nom }}</td>
+            <td>{{ reservation.prenom }}</td>
+            <td>{{reservation.date}}</td>
+            <td>{{reservation.time.time|time:"H:i"}}</td>
+            <td>{{reservation.destination}}</td>
+            <td>{{reservation.tel}}</td>
+            <td>{{reservation.num_trans}}</td>
+            <td>
+              {% if reservation.val %}
+                  <i class="fas fa-check-circle text-success"></i>
+              {% else %}
+                  <i class="far fa-check-circle"></i>
+              {% endif %}
+          </td>
+            <td><a href="{% url 'affvalid' reservation.id %}">valide</a></td>
+              <td><a href="{% url 'rejeter' reservation.id %}">Rejeter</a></td>
+          </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+    </div>
+</div>
+</div>    
+
+
+{% endblock  %}
