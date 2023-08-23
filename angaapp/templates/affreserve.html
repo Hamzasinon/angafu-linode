@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-12">
+  <div class="card">
+      <div class="card-body">
+          <h5 class="card-title mb-0">Liste des Reservations</h5>
+      </div>
+      <div class="search-form">
+          <form method="get">
+              <input type="text" name="query" class="form-control" value="{{ query }}" placeholder="Rechercher...">
+              <button type="submit" class="btn btn-outline-primary">Rechercher</button>
+          </form>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Societe</th>
+            <th scope="col">NOM</th>
+            <th scope="col">PRENOM</th>
+            <th scope="col">DATE DEPART</th>
+            <th scope="col">HEURE</th>
+            <th scope="col">DESTINATION</th>
+            <th scope="col">NUMERO TELEPHONE</th>
+            <th scope="col">NUMERO TRANSFER</th>
+            <th scope="col">C</th>
+            <th scope="col">Confirme</th>
+          </tr>
+        </thead>
+        <tbody>
+            
+            {% for reservation in lis_reserver %}
+          <tr>
+            <th scope="row">{{reservation.code_reservation}}</th>
+            <td>{% for societe in reservation.societe.all %}
+              {{ societe.nom }}
+            {% endfor %}</td>
+            <td>{{reservation.nom}}</td>
+            <td>{{reservation.prenom}}</td>
+            <td>{{reservation.date}}</td>
+            <td>{{reservation.time.time|time:"H:i"}}</td>
+            <td>{{reservation.destination}}</td>
+            <td>{{reservation.tel}}</td>
+            <td>{{reservation.num_trans}}</td>
+            <td>
+              {% if reservation.confirm %}
+                  <i class="fas fa-check-circle text-success"></i>
+              {% else %}
+                  <i class="far fa-check-circle"></i>
+              {% endif %}
+          </td>
+            <td><a href="{% url 'affconfirme' reservation.id %}" class="btn-btngreen"> Confirme</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+</div>
+</div>    
+{% endblock  %}
+    

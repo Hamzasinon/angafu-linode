@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+
+  
+    <div class="col-md-6">
+      <div class="card">
+        <form method="post" action="{% url 'addreserve' societe.id %}" class="form-horizontal">
+          {% csrf_token %}
+          <div class="card-body">
+            <h4 class="card-title">Reservation</h4>
+            <div class="form-group row">
+              <label
+                for="nom"
+                class="col-sm-3 text-end control-label col-form-label"
+                >NOM</label>
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  name="nom"
+                  class="form-control"
+                  id="nom"
+                  placeholder="Nom"
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="lname"
+                class="col-sm-3 text-end control-label col-form-label"
+                >PRENOM</label
+              >
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  name="prenom"
+                  class="form-control"
+                  id="prenom"
+                  placeholder="Prenom"
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="date"
+                class="col-sm-3 text-end control-label col-form-label"
+                >DATE DE DEPART</label
+              >
+              <div class="col-sm-9">
+                <input
+                  type="date"
+                  name="date"
+                  class="form-control"
+                  id="date"
+                  placeholder="Prenom"
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+            <label 
+            class="col-sm-3 text-end control-label col-form-label" 
+            for="time"
+            >HEURE DE DEPART</label>
+            <div class="col-sm-9">
+                    <select name="time" class="form-control" required>
+                      {% for time in time %}
+                        <option value="{{time.id}}">{{time.time|time:"H:i" }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div> 
+            <div class="form-group row">
+              <label 
+              class="col-sm-3 text-end control-label col-form-label" 
+              for="destination"
+              >DESTINATION</label>
+              <div class="col-sm-9">
+                      <select name="destination" class="form-control" required>
+                        {% for destination in destination %}
+                          <option value="{{destination.id}}">{{destination.nom }}</option>
+                          {% endfor %}
+                      </select>
+                  </div>
+              </div> 
+            <div class="form-group row">
+              <label
+                for="tel"
+                class="col-sm-3 text-end control-label col-form-label"
+                >NUMERO TELEPHONE</label
+              >
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  name="tel"
+                  class="form-control"
+                  id="tel"
+                  placeholder="Numero de Téléphone"
+                />
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="num_trans"
+                class="col-sm-3 text-end control-label col-form-label"
+                >NUMERO DE TRANSFERE</label
+              >
+              <div class="col-sm-9">
+                <input
+                  type="text"
+                  name="num_trans"
+                  class="form-control"
+                  id="num_trans"
+                  placeholder="Numero de transfère"
+                />
+              </div>
+            </div>
+          <div class="border-top">
+            <div class="card-body">
+              <button type="Submit" class="btn btn-primary">
+                RESERVER
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+{% endblock  %}
+    

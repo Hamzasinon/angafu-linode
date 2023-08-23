@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for confirme in confirme_lis %}
+<div class="col-md-6 col-lg-4 col-xlg-3">
+    <a href="{% url 'affichv' confirme.id %}">
+    <div class="card card-hover">
+      <div class="box bg-danger text-center">
+        <h6 class="text-white">{{confirme.num_trans}}Click pour Valide</h6>
+        </div>
+    </div>
+    </a>
+</div>
+
+{% endfor %}
+{% endblock  %}

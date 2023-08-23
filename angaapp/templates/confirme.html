@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="col-md-6">
+    <div class="card">
+      <form method="post" action="{% url 'confirme' reservation.id %}" class="form-horizontal">
+        {% csrf_token %}
+        <div class="card-body">
+          <h4 class="card-title">Valide la Reservation</h4>
+          <div class="form-group row">
+            <label
+              for="nom"
+              class="col-sm-3 text-end control-label col-form-label"
+              >num_trans</label>
+            <div class="col-sm-9">
+              <input
+                type="text"
+                name="num_trans"
+                class="form-control"
+                id="num_trans"
+                placeholder="Numero de transfer"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label
+              for="trans_id"
+              class="col-sm-3 text-end control-label col-form-label"
+              >Id du Transfer</label
+            >
+            <div class="col-sm-9">
+              <input
+                type="text"
+                name="trans_id"
+                class="form-control"
+                id="trans_id"
+                placeholder="id du transfer"
+              />
+            </div>
+          </div>
+          <div class="form-group row">
+            <label
+              for="date"
+              class="col-sm-3 text-end control-label col-form-label"
+              >montant_paye</label
+            >
+            <div class="col-sm-9">
+              <input
+                type="text"
+                name="montant_paye"
+                class="form-control"
+                id="date"
+                placeholder="Montant"
+              />
+            </div>
+          </div>
+          
+        <div class="border-top">
+          <div class="card-body">
+            <button type="Submit" class="btn btn-outline-success">
+              Valide
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock  %}
